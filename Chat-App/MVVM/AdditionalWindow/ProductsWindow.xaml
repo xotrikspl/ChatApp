@@ -1,0 +1,48 @@
+﻿<Window x:Class="Chat_App.MVVM.AdditionalWindow.ProductsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chat_App.MVVM.AdditionalWindow"
+        mc:Ignorable="d"
+        Title="Chat - Lista produktów" Height="450" Width="875">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2*" />
+            <ColumnDefinition Width="13*" />
+        </Grid.ColumnDefinitions>
+
+        <!-- Filtr wyszukiwania po lewej stronie -->
+        <StackPanel Grid.Column="0" Margin="3,10,0,10">
+            <TextBlock Text="Wyszukaj produkt:" Margin="0 0 0 5" />
+            <TextBox x:Name="txtSearch" Margin="10 0 0 10" TextChanged="SearchProducts" />
+            <TextBlock Text="Filtry:" Margin="0 0 0 5" />
+            <CheckBox x:Name="chkFilter1" Content="Longfill" Margin="10 0 0 5" Checked="FilterProducts" Unchecked="FilterProducts_Unchecked" />
+            <CheckBox x:Name="chkFilter2" Content="Shortfill" Margin="10 0 0 5" Checked="FilterProducts" Unchecked="FilterProducts_Unchecked" />
+            <CheckBox x:Name="chkFilter3" Content="Aromaty" Margin="10 0 0 5" Checked="FilterProducts" Unchecked="FilterProducts_Unchecked" />
+            <CheckBox x:Name="chkFilter4" Content="Liquid" Margin="10 0 0 5" Checked="FilterProducts" Unchecked="FilterProducts_Unchecked" />
+        </StackPanel>
+
+        <!-- Tabela z wynikami po prawej stronie -->
+        <DataGrid Grid.Column="1" Margin="10,10,10,10"
+                  AutoGenerateColumns="False"
+                  ItemsSource="{Binding Products}"
+                  SelectedItem="{Binding SelectedProduct}"
+                  CanUserAddRows="False"
+                  CanUserDeleteRows="False"
+                  CanUserResizeColumns="True"
+                  CanUserSortColumns="True"
+                  IsReadOnly="True">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding id}" />
+                <DataGridTextColumn Header="Firma" Binding="{Binding business}" />
+                <DataGridTextColumn Header="Nazwa" Binding="{Binding name}" />
+                <DataGridTextColumn Header="Smak" Binding="{Binding flavor}" />
+                <DataGridTextColumn Header="Opis smaku" Binding="{Binding description}" />
+                <DataGridTextColumn Header="Typ" Binding="{Binding type}" />
+                <DataGridTextColumn Header="Cena" Binding="{Binding price}" />
+                <DataGridTextColumn Header="Pojemność" Binding="{Binding ml}" />
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>
